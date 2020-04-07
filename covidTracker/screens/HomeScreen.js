@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {
-  Text, View,
+  Text, View, ScrollView,
 } from 'react-native';
-import { Surface, DataTable, Divider, Avatar } from 'react-native-paper';
+import { Surface, Divider, Card } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
 
 const APIurl = 'https://api.covid19india.org/data.json';
@@ -28,7 +28,7 @@ class HomeScreen extends Component {
     render() {
       const { nationData, index } = this.state;
         return (
-          <View style={{ flex: 1 }}>
+          <ScrollView style={{ flex: 1 }}>
             <Surface
               elevation={0}
               style={{
@@ -49,7 +49,7 @@ class HomeScreen extends Component {
                 />
                   <Text style={{ padding: 10}}>
                     Helpline : Please call +91-11-23978046 immediately if you face any covid-19 symptoms such as Cough, Cold, 
-                    Sneeze etc
+                    Sneeze etc.
                   </Text>
                 </View>
                 <Divider />
@@ -109,7 +109,10 @@ class HomeScreen extends Component {
               null
             )
             }
-        </View>
+            <Card style={{ margin: 10 }}>
+            <Card.Cover source={require('../assets/images/guide.jpg')} style={{ flex: 1, height: 400 }} />
+          </Card>
+        </ScrollView>
        );
    }
 }

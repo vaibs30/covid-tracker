@@ -43,12 +43,22 @@ class StateScreen extends Component {
                 />
                   <Text style={{ padding: 10}}>
                     Helpline : Please call +91-11-23978046 immediately if you face any covid-19 symptoms such as Cough, Cold, 
-                    Sneeze etc
+                    Sneeze etc.
                   </Text>
                 </View>
             </Surface>
             {nationData !== undefined ? (
-              <Surface
+              <View style={{ flex: 1 }}>
+              <View style={{ padding: 15,
+                  flexDirection: 'row',
+                  margin: 10,
+                  justifyContent: 'center',
+                  alignItems: 'center', backgroundColor: '#90CDF4',
+                  borderRadius: 6 }}>
+                  <Text style={{ fontSize: 16 }}> Last Updated at: </Text>
+                  <Text style={{ fontSize: 15 }}>{nationData.statewise[0].lastupdatedtime}</Text>
+                </View>
+                <Surface
               elevation={0}
               style={{
                 backgroundColor: '#C6F6D5',
@@ -84,6 +94,7 @@ class StateScreen extends Component {
                   </View>
               </ScrollView>
             </Surface>
+              </View>
             ) : (
               null
             )
