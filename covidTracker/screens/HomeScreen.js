@@ -97,8 +97,8 @@ class HomeScreen extends Component {
                    </View>
                   </View>
                   <View style={{ justifyContent: 'center', alignItems: 'center', marginBottom: 10 }}>
-                    <Text style={{ fontSize: 18, color: '#B7791F' }}>DEATHS</Text>
-                    <View style={{ borderWidth: 0, borderRadius: 50, margin: 10, backgroundColor: '#B7791F' }}>
+                    <Text style={{ fontSize: 18, color: '#2A4365' }}>DEATHS</Text>
+                    <View style={{ borderWidth: 0, borderRadius: 50, margin: 10, backgroundColor: '#2A4365' }}>
                     <Text style={{ padding: 20, fontSize: 18, color: '#fff' }}>{nationData.statewise[0].deaths}</Text>
                    </View>
                   </View>

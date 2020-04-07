@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "HelloWorld",
+    "name": "Covid-19 Tracker",
     "slug": "covidTracker",
+    "backgroundColor" : "#ffffff",
     "platforms": [
       "ios",
       "android",
@@ -12,8 +13,8 @@
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
+      "image": "./assets/images/splashscreen.png",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
