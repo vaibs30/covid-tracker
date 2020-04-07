@@ -1,74 +1,106 @@
+import React, { Component } from 'react';
+import {
+  Text, View, ScrollView,
+} from 'react-native';
+import { Surface, DataTable } from 'react-native-paper';
+import InitialPropsHelper from '../utils/getInitialProps';
 import { Ionicons } from '@expo/vector-icons';
-import * as WebBrowser from 'expo-web-browser';
-import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { RectButton, ScrollView } from 'react-native-gesture-handler';
 
-export default function LinksScreen() {
-  return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
-      <OptionButton
-        icon="md-school"
-        label="Read the Expo documentation"
-        onPress={() => WebBrowser.openBrowserAsync('https://docs.expo.io')}
-      />
+const APIurl = 'https://api.covid19india.org/data.json';
 
-      <OptionButton
-        icon="md-compass"
-        label="Read the React Navigation documentation"
-        onPress={() => WebBrowser.openBrowserAsync('https://reactnavigation.org')}
-      />
+const resolveFunc = async () => { 
+  fetch(APIurl)
+  .then(response => response.json())
+  .then(response => {
+      const nationData = response;
+  });
+  return InitialPropsHelper({
+    nationData,
+  });
+};
 
-      <OptionButton
-        icon="ios-chatboxes"
-        label="Ask a question on the forums"
-        onPress={() => WebBrowser.openBrowserAsync('https://forums.expo.io')}
-        isLastOption
-      />
-    </ScrollView>
-  );
+class StateScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { stateData: props.nationData};
+}
+  UNSAFE_componentWillMount() {
+    fetch(APIurl)
+        .then(response => response.json())
+        .then(response => {
+            this.setState({
+                nationData : response,
+            })
+        });
+}
+    render() {
+      const { nationData } = this.state;
+        return (
+          <View style={{ flex: 1 }}>
+            <Surface
+              elevation={0}
+              style={{
+                backgroundColor: '#C6F6D5',
+                margin: 7,
+                fontSize: 12,
+                borderColor: 'blue',
+                borderRadius: 6,
+                marginTop: 20,
+              }}
+            >
+                <View style={{ padding: 15, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+                <Ionicons
+                  name="ios-information-circle-outline"
+                  size={30}
+                />
+                  <Text style={{ padding: 5}}>
+                    Helpline : Please call +91-11-23978046 if you face any covid-19 symptoms such as Cough, Cold, 
+                    Sneeze etc
+                  </Text>
+                </View>
+            </Surface>
+            {nationData !== undefined ? (
+              <Surface
+              elevation={0}
+              style={{
+                backgroundColor: '#C6F6D5',
+                padding: 10,
+                margin: 7,
+                fontSize: 12,
+                borderColor: 'blue',
+                borderRadius: 6,
+                flex: 1,
+               // flexDirection: 'row',
+                // justifyContent: 'space-evenly',
+              }}>
+              <ScrollView style={{ flexDirection: 'column' }}>
+                  <View style={{ flexDirection: 'row', borderBottomColor: 'black', borderBottomWidth: 1, marginTop: 5, padding: 5 }}>
+                  <Text style={{ flex: 0.4, color: '#22543D' }}>State</Text>
+                    <Text style={{ flex: 0.3, color: '#742A2A' }}>Confirmed</Text>
+                    <Text style={{ flex: 0.2, color: '#742A2A' }}>Active</Text>
+                    <Text style={{ flex: 0.3, color: '#22543D' }}>Recovered</Text>
+                    <Text style={{ flex: 0.2, color: '#744210' }}>Death</Text>
+                  </View>
+                  <View>
+                  {nationData.statewise.map((b) => (
+                    <View key={b.id} style={{ flexDirection: 'row', marginTop: 5, padding: 5 }}>
+                        <Text style={{ flex: 0.4 }} numberOfLines={2}>{b.state}</Text>
+                        <Text style={{ flex: 0.3 }}>{b.confirmed}</Text>
+                        <Text style={{ flex: 0.2 }}>{b.active}</Text>
+                        <Text style={{ flex: 0.3 }}>{b.recovered}</Text>
+                        <Text style={{ flex: 0.2 }}>{b.deaths}</Text>
+                    </View>
+                        ))}
+                  </View>
+              </ScrollView>
+            </Surface>
+            ) : (
+              null
+            )
+            }
+        </View>
+       );
+   }
 }
 
-function OptionButton({ icon, label, onPress, isLastOption }) {
-  return (
-    <RectButton style={[styles.option, isLastOption && styles.lastOption]} onPress={onPress}>
-      <View style={{ flexDirection: 'row' }}>
-        <View style={styles.optionIconContainer}>
-          <Ionicons name={icon} size={22} color="rgba(0,0,0,0.35)" />
-        </View>
-        <View style={styles.optionTextContainer}>
-          <Text style={styles.optionText}>{label}</Text>
-        </View>
-      </View>
-    </RectButton>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fafafa',
-  },
-  contentContainer: {
-    paddingTop: 15,
-  },
-  optionIconContainer: {
-    marginRight: 12,
-  },
-  option: {
-    backgroundColor: '#fdfdfd',
-    paddingHorizontal: 15,
-    paddingVertical: 15,
-    borderWidth: StyleSheet.hairlineWidth,
-    borderBottomWidth: 0,
-    borderColor: '#ededed',
-  },
-  lastOption: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  optionText: {
-    fontSize: 15,
-    alignSelf: 'flex-start',
-    marginTop: 1,
-  },
-});
+export default StateScreen;

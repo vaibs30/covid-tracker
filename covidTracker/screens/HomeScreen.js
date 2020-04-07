@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import { Surface, DataTable } from 'react-native-paper';
 import InitialPropsHelper from '../utils/getInitialProps';
+import { Ionicons } from '@expo/vector-icons';
 
 const APIurl = 'https://api.covid19india.org/data.json';
 
@@ -38,7 +39,7 @@ class HomeScreen extends Component {
             <Surface
               elevation={0}
               style={{
-                backgroundColor: '#9AE6B4',
+                backgroundColor: '#C6F6D5',
                 margin: 7,
                 fontSize: 12,
                 borderColor: 'blue',
@@ -46,9 +47,14 @@ class HomeScreen extends Component {
                 marginTop: 20,
               }}
             >
-                <View style={{ padding: 15, justifyContent: 'center' }}>
-                  <Text>
-                    Call on this number
+                <View style={{ padding: 15, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+                <Ionicons
+                  name="ios-information-circle-outline"
+                  size={30}
+                />
+                  <Text style={{ padding: 5}}>
+                    Helpline : Please call +91-11-23978046 if you face any covid-19 symptoms such as Cough, Cold, 
+                    Sneeze etc
                   </Text>
                 </View>
             </Surface>
@@ -56,7 +62,7 @@ class HomeScreen extends Component {
               <Surface
               elevation={0}
               style={{
-                backgroundColor: '#9AE6B4',
+                backgroundColor: '#C6F6D5',
                 margin: 7,
                 fontSize: 12,
                 borderColor: 'blue',
