@@ -1,26 +1,28 @@
 module.exports = {
-  env: {
-    browser: true,
-    es6: true,
-  },
-  extends: [
-    'plugin:react/recommended',
-    'airbnb',
+  "extends": [
+    "airbnb",
+    "plugin:react/recommended"
   ],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+   "allowImportExportEverywhere" : true,
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2018,
-    sourceType: 'module',
-  },
-  plugins: [
-    'react',
-  ],
-  rules: {
+  "plugins": ["react-native"],
+  "rules": {
+    "arrow-parens": "off",
+    "react/prop-types": "off",
+    "prefer-object-spread": "off",
+    "react/sort-comp": "off",
+    "react/jsx-filename-extension": "off",
+    "react/destructuring-assignment": "off",
+    "class-methods-use-this": "off",
+    "react/forbid-prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "linebreak-style": 0,
+    "react/display-name": "off"
   },
 };
