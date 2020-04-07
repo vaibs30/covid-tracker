@@ -25,7 +25,6 @@ export default function BottomTabNavigator({ navigation, route }) {
             <Flag
               code="IN"
               size={32}
-              style={{ marginBottom: -3 }}
             />
         }}
       />
@@ -34,7 +33,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         component={LinksScreen}
         options={{
           title: 'State',
-          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="md-book" />,
+          tabBarIcon: ({ focused }) => <TabBarIcon focused={focused} name="location-on" />,
         }}
       />
     </BottomTab.Navigator>
